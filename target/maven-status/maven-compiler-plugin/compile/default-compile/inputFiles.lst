@@ -1,2 +1,14 @@
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\SessionsController.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\UsersController.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\User.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\PictgramApplication.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\validation\constraints\PasswordEqualsValidator.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\form\UserForm.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\UserInf.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\service\UserDetailsServiceImpl.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\AbstractEntity.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\PagesController.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\SecurityConfig.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\filter\FormAuthenticationProvider.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\validation\constraints\PasswordEquals.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\repository\UserRepository.java
