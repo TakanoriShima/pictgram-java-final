@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.pictgram.entity.User;
 import com.example.pictgram.repository.UserRepository;
@@ -21,6 +23,11 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	private UserRepository repository;
+	
+	// 追加
+	@Autowired
+	@Lazy
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
@@ -28,7 +35,7 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
 		String password = auth.getCredentials().toString();
 
 		log.debug("name={}", name);
-		log.debug("暗号前password={}", password);
+		log.debug("password={}", password);
 
 		if ("".equals(name) || "".equals(password)) {
 			throw new AuthenticationCredentialsNotFoundException("ログイン情報に不備があります。");
@@ -39,9 +46,10 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
 			throw new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。");
 		}
 
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-		if (encoder.matches(password, entity.getPassword())) {
+		// 追加 入力されたパスワードとデータベースのパスワードを比較
+		if (passwordEncoder.matches(password, entity.getPassword())) {
 			return new UsernamePasswordAuthenticationToken(entity, password, entity.getAuthorities());
 		}
 

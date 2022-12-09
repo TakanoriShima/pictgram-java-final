@@ -40,12 +40,15 @@ public class UsersController {
 		String name = form.getName();
 		String email = form.getEmail();
 		String password = form.getPassword();
-		String passwordConfirmation = form.getPasswordConfirmation();
+
+		// 使っていない
+//		String passwordConfirmation = form.getPasswordConfirmation();
 
 		if (repository.findByUsername(email) != null) {
 			FieldError fieldError = new FieldError(result.getObjectName(), "email", "その E メールはすでに使用されています。");
 			result.addError(fieldError);
 		}
+
 		if (result.hasErrors()) {
 			model.addAttribute("hasMessage", true);
 			model.addAttribute("class", "alert-danger");

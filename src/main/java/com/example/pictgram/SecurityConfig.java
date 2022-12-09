@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private FormAuthenticationProvider authenticationProvider;
 
+	// "/" 追加
 	private static final String[] URLS = { "/", "/css/**", "/images/**", "/scripts/**", "/h2-console/**" };
 
 	/**
@@ -47,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
-        http.authorizeRequests().antMatchers("/login", "/logout-complete", "/users/new", "/user", "/", "/error").permitAll()
+        http.authorizeRequests().antMatchers("/login", "/logout-complete", "/users/new", "/user", "/", "/error").permitAll() // "/error" 追加
                 .anyRequest().authenticated()
                 // ログアウト処理
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout-complete").clearAuthentication(true)
@@ -55,8 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true).permitAll().and().csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 // form
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/topics").failureUrl("/login-failure").usernameParameter("username") // ユーザ名のリクエストパラメータ名
-				.passwordParameter("password") // パスワードのリクエストパラメータ名
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/topics").failureUrl("/login-failure")
                 .permitAll();
 //         @formatter:on
 	}
