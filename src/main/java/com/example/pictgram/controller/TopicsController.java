@@ -10,6 +10,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import org.springframework.context.MessageSource;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,11 +39,16 @@ import com.example.pictgram.entity.UserInf;
 import com.example.pictgram.form.TopicForm;
 import com.example.pictgram.form.UserForm;
 import com.example.pictgram.repository.TopicRepository;
+import com.example.pictgram.entity.Favorite;
+import com.example.pictgram.form.FavoriteForm;
 
 @Controller
 public class TopicsController {
 
 	protected static Logger log = LoggerFactory.getLogger(TopicsController.class);
+
+	@Autowired
+	private MessageSource messageSource;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -75,6 +81,9 @@ public class TopicsController {
 	public TopicForm getTopic(UserInf user, Topic entity) throws FileNotFoundException, IOException {
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		modelMapper.typeMap(Topic.class, TopicForm.class).addMappings(mapper -> mapper.skip(TopicForm::setUser));
+		modelMapper.typeMap(Topic.class, TopicForm.class).addMappings(mapper -> mapper.skip(TopicForm::setFavorites));
+		modelMapper.typeMap(Favorite.class, FavoriteForm.class)
+				.addMappings(mapper -> mapper.skip(FavoriteForm::setTopic));
 
 		boolean isImageLocal = false;
 		if (imageLocal != null) {
@@ -103,6 +112,16 @@ public class TopicsController {
 		UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
 		form.setUser(userForm);
 
+		List<FavoriteForm> favorites = new ArrayList<FavoriteForm>();
+		for (Favorite favoriteEntity : entity.getFavorites()) {
+			FavoriteForm favorite = modelMapper.map(favoriteEntity, FavoriteForm.class);
+			favorites.add(favorite);
+			if (user.getUserId().equals(favoriteEntity.getUserId())) {
+				form.setFavorite(favorite);
+			}
+		}
+		form.setFavorites(favorites);
+
 		return form;
 	}
 
@@ -112,13 +131,13 @@ public class TopicsController {
 		switch (extension) {
 		case "jpg":
 		case "jpeg":
-			mimeType += "jpeg";
+			mimeType = "jpeg";
 			break;
 		case "png":
-			mimeType += "png";
+			mimeType = "png";
 			break;
 		case "gif":
-			mimeType += "gif";
+			mimeType = "gif";
 			break;
 		}
 		return mimeType;
@@ -131,12 +150,16 @@ public class TopicsController {
 	}
 
 	@RequestMapping(value = "/topic", method = RequestMethod.POST)
+//	public String create(Principal principal, @Validated @ModelAttribute("form") TopicForm form, BindingResult result,
+//			Model model, @RequestParam MultipartFile image, RedirectAttributes redirAttrs) throws IOException {
 	public String create(Principal principal, @Validated @ModelAttribute("form") TopicForm form, BindingResult result,
-			Model model, @RequestParam MultipartFile image, RedirectAttributes redirAttrs) throws IOException {
+			Model model, @RequestParam MultipartFile image, RedirectAttributes redirAttrs, Locale locale)
+			throws IOException {
 		if (result.hasErrors()) {
 			model.addAttribute("hasMessage", true);
 			model.addAttribute("class", "alert-danger");
-			model.addAttribute("message", "投稿に失敗しました。");
+//			model.addAttribute("message", "投稿に失敗しました。");
+			model.addAttribute("message", messageSource.getMessage("topics.create.flash.1", new String[] {}, locale));
 			return "topics/new";
 		}
 
@@ -161,7 +184,9 @@ public class TopicsController {
 
 		redirAttrs.addFlashAttribute("hasMessage", true);
 		redirAttrs.addFlashAttribute("class", "alert-info");
-		redirAttrs.addFlashAttribute("message", "投稿に成功しました。");
+//		redirAttrs.addFlashAttribute("message", "投稿に成功しました。");
+		redirAttrs.addFlashAttribute("message",
+				messageSource.getMessage("topics.create.flash.2", new String[] {}, locale));
 
 		return "redirect:/topics";
 	}
