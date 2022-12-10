@@ -3,3 +3,14 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/pictgram
+    username: ${psql.user}
+    password: ${psql.password}    
+image:
+  local: true              
