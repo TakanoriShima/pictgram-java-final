@@ -8,7 +8,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/pictgram
     username: pictgram
     password: password
-
+   
 #  h2:
 #    console:
 #      enabled: true
