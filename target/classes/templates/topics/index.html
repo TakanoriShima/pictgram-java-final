@@ -8,6 +8,25 @@
   </head>
   <body>
     <div class="topics-index-wrapper" layout:fragment="contents">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script defer th:src="|https://maps.googleapis.com/maps/api/js?key=${@environment.getProperty('googlemap.key')}&callback=initMap|"></script>
+    <style type="text/css">
+	   .map {
+	       height: 100%;
+	   }
+    </style>
+    <script th:inline="javascript">
+	   function initMap() {
+		    /*[# th:each="topic : ${list}"]*/
+		    /*[# th:if="${topic.latitude != null and topic.longitude != null}"]*/
+		      new google.maps.Map(document.getElementById("map[[${topic.id}]]"), {
+		          center: { lat: [[${topic.latitude}]], lng: [[${topic.longitude}]] },
+		          zoom: 16,
+		      });
+		    /*[/]*/
+		    /*[/]*/
+	   }
+    </script>
 	  <div class="container">
 	      <div class="row" th:each="topic : ${list}">
 	        <a th:id="${topic.id}"></a>
@@ -31,8 +50,11 @@
 				</div>
 	            
 	            <pre class="description" th:text="${topic.description}"></pre>
-	            <div class="comments">
-				    <h3 class='text-center' th:text="#{topics.index.comment}">繧ｳ繝｡繝ｳ繝�</h3>
+				<div style="height: 320px" th:if="${topic.latitude != null and topic.longitude != null}">
+					   <div class="map" th:id="|map${topic.id}|"></div>
+				   </div>
+		            <div class="comments">
+				    <h3 class='text-center' th:text="#{topics.index.comment}">鬯ｯ�ｽｩ陝ｷ�ｽ｢�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｧ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｳ鬯ｯ�ｽｩ陝ｷ�ｽ｢�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢鬮ｫ�ｽｴ髮懶ｽ｣�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｡鬯ｯ�ｽｩ陝ｷ�ｽ｢�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢鬮ｫ�ｽｴ髮懶ｽ｣�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｳ鬯ｯ�ｽｩ陝ｷ�ｽ｢�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢鬮ｫ�ｽｴ髮懶ｽ｣�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽ｢�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｿ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｿ�ｽｽ�ｿｽ�ｽｽ�ｽｽ�ｿｽ�ｽｽ�ｽｽ</h3>
 				    <ul th:each="comment : ${topic.comments}">
 				        <li><pre class="description" th:text="${comment.description}"></pre></li>
 				    </ul>
