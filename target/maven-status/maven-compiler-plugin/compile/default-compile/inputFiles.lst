@@ -31,6 +31,7 @@ C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\rep
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\repository\TopicRepository.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\service\UserDetailsServiceImpl.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\AbstractEntity.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\SocialUser.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\PagesController.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\SecurityConfig.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\filter\FormAuthenticationProvider.java
