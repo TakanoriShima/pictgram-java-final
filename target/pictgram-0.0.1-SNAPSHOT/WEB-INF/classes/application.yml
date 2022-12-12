@@ -13,4 +13,6 @@ spring:
     username: ${psql.user}
     password: ${psql.password}    
 image:
-  local: true              
+  local: true
+onesignal:
+  id: ${onesignal.id}              

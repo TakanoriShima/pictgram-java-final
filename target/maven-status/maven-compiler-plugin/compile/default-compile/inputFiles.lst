@@ -8,6 +8,7 @@ C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\App
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\CommentsController.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\form\UserForm.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\FavoritesController.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\form\EventForm.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\Favorite.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\CalendarsController.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\validation\constraints\ImageNotEmptyValidator.java
@@ -16,6 +17,7 @@ C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\for
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\repository\UserRepository.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\repository\CommentRepository.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\validation\constraints\ImageByteValidator.java
+C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\EventsController.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\SessionsController.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\entity\Comment.java
 C:\Users\quark\eclipse-workspace\pictgram\src\main\java\com\example\pictgram\controller\UsersController.java

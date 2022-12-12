@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// "/" 追加
 	private static final String[] URLS = { "/", "/css/**", "/images/**", "/scripts/**", "/h2-console/**",
-			"/favicon.ico" };
+			"/favicon.ico", "/OneSignalSDKWorker.js" };
 
 	/**
 	 * 認証から除外する
